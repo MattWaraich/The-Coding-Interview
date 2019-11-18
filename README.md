@@ -1,8 +1,6 @@
 # Coding Interview
 
-- The task of this coding interview is to implement vending machine functionalities purely with JavaScript
-
-- Using Test Driven Development, implementing tests to run and pass varying queries
+- The task of this coding interview is to implement vending machine functionalities purely with JavaScript through Test Driven Development.
 
 ## Technologies Used
 
