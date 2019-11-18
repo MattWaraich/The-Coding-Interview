@@ -1,6 +1,5 @@
 const vendingMachine = require("./vendingmachine");
 const inventory = require("./inventory.json");
-
 const VENDING = new vendingMachine(inventory);
 
 describe("Vending Machine", () => {
@@ -44,3 +43,5 @@ describe("Vending Machine", () => {
       };
   });
 });
+
+// paste the 4 non functioning test cases back from notes
