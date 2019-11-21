@@ -1,5 +1,5 @@
-const vendingMachine = require("./vendingmachine");
-const inventory = require("./inventory.json");
+const vendingMachine = require("../lib/vending-machine");
+const inventory = require("../inventory.json");
 const VENDING = new vendingMachine(inventory);
 
 describe("Vending Machine", () => {
@@ -11,6 +11,13 @@ describe("Vending Machine", () => {
           { name: "RUFFLES", count: 10, price: 2 },
           { name: "DORITOS", count: 2, price: 2 },
           { name: "CANDY", count: 12, price: 1 }
+        ],
+        coins: [
+          { name: "nickel", count: 50, price: 0.05 },
+          { name: "dime", count: 40, price: 0.1 },
+          { name: "quarter", count: 30, price: 0.25 },
+          { name: "loonie", count: 20, price: 1 },
+          { name: "toonie", count: 10, price: 2 }
         ]
       });
     });
@@ -35,13 +42,61 @@ describe("Vending Machine", () => {
       expect(item).toEqual(undefined);
     });
 
-    it("Should throw an error - Not enough money"),
-      () => {
+    it("Should throw an error - Not item found", () => {
+      const item = VENDING.findItem("OREO");
+      expect(() => {
+        item.toThrow();
+      });
+    });
+  });
+
+  describe("Restock Inventory:", () => {
+    describe("When restockItem = 'Candy' ", () => {
+      it("should return 'Inventory count is now full (12) for this item", () => {
         expect(() => {
-          item.toThrow();
+          VENDING.restockItem("Candy").toThrow(
+            "Inventory count is now full (12) for this item"
+          );
         });
-      };
+      });
+    });
+
+    describe("When restocking 1 dollar", () => {
+      it("should throw an error 'Inventory count is already full (20) for loonie'", () => {
+        expect(() => {
+          VENDING.resupplyChange("1 dollar").toThrow(
+            "Inventory count is already full (20) for loonie"
+          );
+        });
+      });
+    });
+
+    describe("When selection = 'DORITOS', changeInput='1.5'", () => {
+      it("should throw an error 'You must put $0.50 more to purchase Ruffles chips'", () => {
+        expect(() =>
+          VENDING.dispenseItem("DORITOS", 2.0).toThrow(
+            "You must put $0.50 more to purchase DORITOS chips"
+          )
+        );
+      });
+    });
+
+    describe("When selection = 'LAYS' with exact change", () => {
+      it("should throw an error 'Sorry, this item is sold out' and return all change", () => {
+        expect(() => VENDING.dispenseItem("LAYS", 10).toThrow("Sold Out"));
+      });
+    });
+
+    describe("Resupply Inventory Change:", () => {
+      describe("When restocking 25c ", () => {
+        it("should return 'Inventory count is now full (25) for this change'", () => {
+          expect(() => {
+            VENDING.resupplyChange("5c").toThrow(
+              "Inventory count is full (50) for this change"
+            );
+          });
+        });
+      });
+    });
   });
 });
-
-// paste the 4 non functioning test cases back from notes

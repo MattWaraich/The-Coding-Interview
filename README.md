@@ -24,7 +24,7 @@
 
 ## Screenshot of test output from the terminal
 
--
+- ![All Tests Passed](/_snapshot/vendingMachineTests.png)
 
 ## License
 

@@ -1,0 +1,16 @@
+{
+  "items": [
+    { "name": "LAYS", "count": 5, "price": 2 },
+    { "name": "RUFFLES", "count": 10, "price": 2 },
+    { "name": "DORITOS", "count": 2, "price": 2 },
+    { "name": "CANDY", "count": 12, "price": 1 }
+  ],
+
+  "coins": [
+    { "name": "nickel", "count": 50, "price": 0.05 },
+    { "name": "dime", "count": 40, "price": 0.1 },
+    { "name": "quarter", "count": 30, "price": 0.25 },
+    { "name": "loonie", "count": 20, "price": 1 },
+    { "name": "toonie", "count": 10, "price": 2 }
+  ]
+}
