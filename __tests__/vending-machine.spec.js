@@ -1,6 +1,6 @@
-const vendingMachine = require("../lib/vending-machine");
-const inventory = require("../inventory.json");
-const VENDING = new vendingMachine(inventory);
+const VendingMachine = require("./VendingMachine");
+const inventory = require("./inventory.json");
+const VENDING = new VendingMachine(inventory);
 
 describe("Vending Machine", () => {
   describe("show all the items", () => {
@@ -13,11 +13,11 @@ describe("Vending Machine", () => {
           { name: "CANDY", count: 12, price: 1 }
         ],
         coins: [
-          { name: "nickel", count: 50, price: 0.05 },
-          { name: "dime", count: 40, price: 0.1 },
-          { name: "quarter", count: 30, price: 0.25 },
+          { name: "toonie", count: 10, price: 2 },
           { name: "loonie", count: 20, price: 1 },
-          { name: "toonie", count: 10, price: 2 }
+          { name: "quarter", count: 30, price: 0.25 },
+          { name: "dime", count: 40, price: 0.1 },
+          { name: "nickel", count: 50, price: 0.05 }
         ]
       });
     });
@@ -84,6 +84,12 @@ describe("Vending Machine", () => {
     describe("When selection = 'LAYS' with exact change", () => {
       it("should throw an error 'Sorry, this item is sold out' and return all change", () => {
         expect(() => VENDING.dispenseItem("LAYS", 10).toThrow("Sold Out"));
+      });
+    });
+
+    describe("When selection = 'CANDY' with more than exact change", () => {
+      it("should return the correct", () => {
+        expect(() => VENDING.dispenseItem("CANDY", 2).toEqual(["loonie"]));
       });
     });
 
