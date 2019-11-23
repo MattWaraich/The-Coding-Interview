@@ -1,6 +1,6 @@
-const VendingMachine = require("../lib/vending-machine");
+const vendingMachine = require("../lib/vending-machine");
 const inventory = require("../inventory.json");
-const VENDING = new VendingMachine(inventory);
+const VENDING = new vendingMachine(inventory);
 
 describe("Vending Machine", () => {
   describe("show all the items", () => {
